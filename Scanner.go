@@ -5,48 +5,41 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"text/scanner"
 )
-
-//Token is
-type Token struct {
-	tokentype TokenType
-	lexme     string
-}
-
-const (
-	//INT is
-	INT finalState = 2 + iota
-	//ID is
-	ID
-)
-
-type finalState int
-
-//TokenType is
-type TokenType struct {
-	finalState int
-}
-
-//NewTokenType is
-func NewTokenType(finalState int) *TokenType { //TokenType's constructor
-	p := new(TokenType)
-	p.finalState = finalState
-	return p
-}
 
 //Scanner is
 type Scanner struct {
+	//Golang 에서는 배열을 꼭 크기 지정 필요 크기지정없으면 slice됨
 	transM [4][128]int
 	source string
 }
 
-//NewScanner is
+var st scanner.Scanner
+
+func (s *st) NextToken(){
+	return
+}
+
+//NewScanner is constructor
 func NewScanner(source string) *Scanner {
 	p := new(Scanner)
 	// tm := [4][128]int
 	p.transM = initTM()
-	p.source = source
+	if source == nil {
+		p.source=""
+	}else{
+		p.source=source
+	}
+	st = new
 	return p
+}
+func (s *Scanner) tokenize() []Token {
+	var list []Token //slice 선언(java의 list 역할할것)
+	for {            //조건식 추가 필요
+		list = append(list, nextToken())
+	}
+	return list
 }
 
 func initTM() [4][128]int {
@@ -92,7 +85,11 @@ func initTM() [4][128]int {
 }
 func nextToken() Token {
 	stateOld := 0
-	stateNew
+	stateNew :=0
+
+	if(!){
+
+	}
 
 	// if(){
 
